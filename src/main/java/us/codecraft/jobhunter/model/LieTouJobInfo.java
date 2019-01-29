@@ -17,8 +17,8 @@ import java.util.List;
  * Time: 下午4:28
  */
 @Data
-@TargetUrl("http://sfsm1.chunfund.cn/index.html")
-@HelpUrl("http://sfsm1.chunfund.cn/index.html")
+@TargetUrl("http://sfsm1.chunfund.cn/*.html")
+@HelpUrl("http://sfsm1.chunfund.cn/*.html")
 public class LieTouJobInfo implements AfterExtractor {
     private String index="http://sfsm1.chunfund.cn/index.html";
 
@@ -33,6 +33,8 @@ public class LieTouJobInfo implements AfterExtractor {
 
     @ExtractBy("//a/@href")
     private List<String> html;
+
+
     /*@ExtractBy("//div[@id='details-pic']/p/img/@src")
     private List<String> imags;*/
     /*@ExtractBy("//p[@class='job-item-title']/text()")

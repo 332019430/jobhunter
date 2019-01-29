@@ -7,38 +7,54 @@ import java.util.List;
 
 public class DownloadUtils {
 
+    /**
+     * @param folderPath 文件路径
+     * @param fileUrl    资源路径
+     * @throws Exception
+     */
+    public static void download(String folderPath, String fileUrl) {
+        InputStream inputStream = null;
+        OutputStream outputStream = null;
+        BufferedInputStream bis = null;
+        BufferedOutputStream bos = null;
 
-	public static void download(String folderPath, String fileUrl) throws Exception {
-		File folder = FileUtils.makeDir(folderPath);
+        try {
+            File folder = FileUtils.makeDir(folderPath);
 
-		String picName = fileUrl.replaceAll(".*/(.*)", "$1");
+            String fileName = fileUrl.replaceAll(".*/(.*)", "$1");
 
-		File file = new File(folder, picName);
+            File file = new File(folder, fileName);
 
-		URL url = new URL(fileUrl);
+            URL url = new URL(fileUrl);
 
-		// InputStream inputStream = url.openStream();
+            // InputStream inputStream = url.openStream();
 
-		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-		connection.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
-		InputStream inputStream = connection.getInputStream();
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
+            inputStream = connection.getInputStream();
 
-		OutputStream outputStream = new FileOutputStream(file);
+            outputStream = new FileOutputStream(file);
 
-		BufferedInputStream bis = new BufferedInputStream(inputStream, 1024 * 8);
-		BufferedOutputStream bos = new BufferedOutputStream(outputStream);
+            bis = new BufferedInputStream(inputStream, 1024 * 8);
+            bos = new BufferedOutputStream(outputStream);
 
-		int len;
-		while ((len = bis.read()) != -1) {
-			bos.write(len);
-		}
+            int len;
+            while ((len = bis.read()) != -1) {
+                bos.write(len);
+            }
+            bos.close();
+            bis.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
 
-		bos.close();
-		bis.close();
+        }
 
-	}
 
-	public static void main(String[] args) {
-		String a="";
-	}
+
+    }
+
+    public static void main(String[] args) {
+        download("resourcea/","http://sfsm1.chunfund.cn/index.html");
+    }
 }
