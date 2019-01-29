@@ -7,12 +7,13 @@ import java.util.List;
 
 public class DownloadUtils {
 
-    /**
-     * @param folderPath 文件路径
-     * @param fileUrl    资源路径
-     * @throws Exception
-     */
-    public static void download(String folderPath, String fileUrl) {
+	/**
+	 *
+	 * @param folderPath 文件路径
+	 * @param fileUrl 资源路径
+	 * @throws Exception
+	 */
+	public static void download(String folderPath, String fileUrl) {
         InputStream inputStream = null;
         OutputStream outputStream = null;
         BufferedInputStream bis = null;
@@ -54,7 +55,11 @@ public class DownloadUtils {
 
     }
 
-    public static void main(String[] args) {
-        download("resourcea/","http://sfsm1.chunfund.cn/index.html");
+	public static void main(String[] args) {
+		String fileUrl="http://sm3.sdflscy.com/templates/24300/img2.png";
+        String dest =fileUrl.replaceAll(".*/(.*)", "$1");
+        String my =fileUrl.replaceAll(".*/(.*)", "$1");
+        System.out.println(my);
+        System.out.println(dest);
     }
 }
