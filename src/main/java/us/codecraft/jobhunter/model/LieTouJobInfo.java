@@ -17,9 +17,10 @@ import java.util.List;
  * Time: 下午4:28
  */
 @Data
-@TargetUrl("http://sfsm1.chunfund.cn/*.html")
-@HelpUrl("http://sfsm1.chunfund.cn/*.html")
+@TargetUrl("http://sfsm1.chunfund.cn/*")
+@HelpUrl("http://sfsm1.chunfund.cn/*")
 public class LieTouJobInfo implements AfterExtractor {
+
     private String index="http://sfsm1.chunfund.cn/index.html";
 
     @ExtractBy("//link/@href")

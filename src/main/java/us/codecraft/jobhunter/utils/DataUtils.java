@@ -16,17 +16,21 @@ import java.util.List;
 public class DataUtils {
 
     public static HashSet<String> saveData(HashSet<String> dataSet,List<String> list,String prefix){
-        for (String s : list) {
-            if (StringUtils.isNotBlank(s)) {
-                /*if (!s.startsWith("http:")){
-                    s = prefix + s;
-                    dataSet.add(s);
-                }*/
-                if (s.startsWith("http:")||s.startsWith("https:")){
-                    dataSet.add(s);
+        for (String url : list) {
+            if (StringUtils.isNotBlank(url)) {
+                int qusetionIndex = url.indexOf("?");
+                if (qusetionIndex!=-1){
+                    url=url.substring(0,qusetionIndex);
+                }
+                // ||
+                if (url.startsWith("http:")||url.startsWith("https:")){
+                    dataSet.add(url);
                 }else {
-                    s = prefix + s;
-                    dataSet.add(s);
+                    if (url.startsWith("/")){
+                        url=url.substring(1);
+                    }
+                    String destUrl = prefix + url;
+                    dataSet.add(destUrl);
                 }
 
             }

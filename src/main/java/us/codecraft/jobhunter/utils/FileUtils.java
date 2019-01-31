@@ -90,27 +90,9 @@ public class FileUtils {
         return folder;
     }
 
-    public static void readAndWrite(File file) {
 
-    }
 
-    public static void downloadImg(String path, File dir) throws Exception {
-        if (!dir.exists()) {
-            dir.mkdirs();
-        }
-        long time = System.currentTimeMillis();
-        File f = new File(dir, time + ".jpg");
-        URL url = new URL(path);
-        InputStream is = url.openStream();
-        FileOutputStream fos = new FileOutputStream(f);
-        int len;
-        byte[] arr = new byte[8192];
-        while ((len = is.read(arr)) != -1) {
-            fos.write(arr, 0, len);
-        }
-        is.close();
-        fos.close();
-    }
+
 
 
 }
